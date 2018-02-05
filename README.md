@@ -1,0 +1,2 @@
+# XCNoDataPlaceholder
+UITableView和UICollectionView的空数据占位图
