@@ -9,40 +9,36 @@
 #import <UIKit/UIKit.h>
 
 
-/**
- 网络状态检测 正常Return YES ,网络不可达 Return NO
- */
-static BOOL (^xcBackgroundImageNetStateBlock)(void) ;
-
-
-
-@protocol UITableViewBackgroundImageDelegate<NSObject>
+@protocol UITableViewPlaceholderImageDelegate<NSObject>
 
 @optional
 /**
  无数据占位图
  */
-- (UIImage *)tableViewNoDataBackgroundImage;
+- (UIImage *)tableViewNoDataPlaceholderImage;
 /**
- 网络错误的占位图，需要实现网络检测xcBackgroundImageNetStateBlock  ↑
+ 网络错误的占位图，需要实现网络检测zxcBackgroundImageNetStateBlock  
  */
-- (UIImage *)tableViewErrorBackgroundImage;
+- (UIImage *)tableViewErrorPlaceholderImage;
 /**
  占位图尺寸。默认200*200
  */
-- (CGSize)tableViewBackgroundImageSize;
+- (CGSize)tableViewPlaceholderImageSize;
+/**
+ 刷新按钮
+ */
+- (UIButton *)tableViewPlaceholderRefreshButton;
 
 @end
 
 
 @interface UITableView (NoDataPlaceholder)
 
-@property (nonatomic, weak) id<UITableViewBackgroundImageDelegate> backgroundImageDelegate;
+@property (nonatomic, weak) id<UITableViewPlaceholderImageDelegate> placeholderImageDelegate;
 
-@property (nonatomic, weak) UIButton * refreshButton;
 
 ///刷新
--(void)xc_reloadData;
+-(void)zxc_reloadData;
 
 
 @end

@@ -7,21 +7,22 @@
 //
 
 #import "UITableView+NoDataPlaceholder.h"
+#import "ZXCNoDataPlaceholder.h"
 #import <objc/runtime.h>
 
 
-const char * imageDelegateKey = "imageDelegateKey";
-const char * refreshBtnKey = "refreshBtnKey";
+const char * imageDelegateKey_tb = "imageDelegateKey_tb";
+const char * refreshBtnKey_tb = "refreshBtnKey_tb";
 
 
 @implementation UITableView (NoDataPlaceholder)
 
--(void)xc_reloadData{
+-(void)zxc_reloadData{
     [self reloadData];
     
     //若两个都没有实现，则不继续执行
-    if ( !([self.backgroundImageDelegate respondsToSelector:@selector(tableViewErrorBackgroundImage)] ||
-        [self.backgroundImageDelegate respondsToSelector:@selector(tableViewBackgroundImageSize)] )) {
+    if ( !([self.placeholderImageDelegate respondsToSelector:@selector(tableViewErrorPlaceholderImage)] ||
+        [self.placeholderImageDelegate respondsToSelector:@selector(tableViewNoDataPlaceholderImage)] )) {
         return;
     }
     
@@ -29,7 +30,7 @@ const char * refreshBtnKey = "refreshBtnKey";
 
     
     //判断-有判断工具并且网络不正常
-    if ( self.visibleCells.count <= 0 && xcBackgroundImageNetStateBlock && !xcBackgroundImageNetStateBlock() ) {
+    if ( self.visibleCells.count <= 0 && zxcBackgroundImageNetStateBlock && !zxcBackgroundImageNetStateBlock() ) {
         
         [self loadNormalBackgroundView];
         return;
@@ -49,22 +50,22 @@ const char * refreshBtnKey = "refreshBtnKey";
 
 - (void)loadNormalBackgroundView{
     
-    if (![self.backgroundImageDelegate respondsToSelector:@selector(tableViewNoDataBackgroundImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(tableViewNoDataPlaceholderImage)]  ) {
         return;
     }
-    if (![self.backgroundImageDelegate tableViewNoDataBackgroundImage] ) {
+    if (![self.placeholderImageDelegate tableViewNoDataPlaceholderImage] ) {
         return;
     }
     
-    CGSize size = [self tableViewBackgroundImageDefaultSize];
+    CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.backgroundImageDelegate respondsToSelector:@selector(tableViewBackgroundImageSize)]) {
-        size  = [self.backgroundImageDelegate tableViewBackgroundImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate tableViewPlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,size.width , size.height)];
     normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.backgroundImageDelegate tableViewErrorBackgroundImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.image = [[self.placeholderImageDelegate tableViewNoDataPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -72,22 +73,22 @@ const char * refreshBtnKey = "refreshBtnKey";
 
 - (void)loadErrorBackgroundView{
     
-    if (![self.backgroundImageDelegate respondsToSelector:@selector(tableViewErrorBackgroundImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(tableViewErrorPlaceholderImage)]  ) {
         return;
     }
-    if (![self.backgroundImageDelegate tableViewErrorBackgroundImage] ) {
+    if (![self.placeholderImageDelegate tableViewErrorPlaceholderImage] ) {
         return;
     }
     
-    CGSize size = [self tableViewBackgroundImageDefaultSize];
+    CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.backgroundImageDelegate respondsToSelector:@selector(tableViewBackgroundImageSize)]) {
-        size  = [self.backgroundImageDelegate tableViewBackgroundImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate tableViewPlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 ,size.width , size.height)];
     normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.backgroundImageDelegate tableViewErrorBackgroundImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.image = [[self.placeholderImageDelegate tableViewErrorPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -95,17 +96,20 @@ const char * refreshBtnKey = "refreshBtnKey";
 
 - (void)addRefureshButton{
     
-    if (!self.refreshButton) {
+    if (!( [self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderRefreshButton)] &&
+        [self.placeholderImageDelegate tableViewPlaceholderRefreshButton] ) ) {
         return;
     }
     
     UIView * placeholderImgView = self.backgroundView.subviews.firstObject;
     
-    CGFloat y = self.refreshButton.bounds.size.height/2 + CGRectGetMaxY(placeholderImgView.frame) + 20;
+    UIButton * refreshButton = [self.placeholderImageDelegate tableViewPlaceholderRefreshButton];
     
-    self.refreshButton.center = CGPointMake(placeholderImgView.center.x, y );
+    CGFloat y = refreshButton.bounds.size.height/2 + CGRectGetMaxY(placeholderImgView.frame) + 20;
     
-    [self.backgroundView addSubview:self.refreshButton];
+    refreshButton.center = CGPointMake(placeholderImgView.center.x, y );
+    
+    [self.backgroundView addSubview:refreshButton];
     
 }
 
@@ -127,25 +131,26 @@ const char * refreshBtnKey = "refreshBtnKey";
 
 
 
-- (CGSize)tableViewBackgroundImageDefaultSize{
+- (CGSize)defaultPlaceholderSize{
     
     return CGSizeMake(200, 200);
 }
 
 #pragma mark -
 
--(id<UITableViewBackgroundImageDelegate>)backgroundImageDelegate{
-    return objc_getAssociatedObject(self, imageDelegateKey);
+-(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+    return objc_getAssociatedObject(self, imageDelegateKey_tb);
 }
--(void)setBackgroundImageDelegate:(id<UITableViewBackgroundImageDelegate>)backgroundImageDelegate{
-    objc_setAssociatedObject(self, imageDelegateKey, backgroundImageDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+-(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+    objc_setAssociatedObject(self, imageDelegateKey_tb, placeholderImageDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(UIButton *)refreshButton{
-    return objc_getAssociatedObject(self, refreshBtnKey);
+    return objc_getAssociatedObject(self, refreshBtnKey_tb);
 }
 -(void)setRefreshButton:(UIButton *)refreshButton{
-    objc_setAssociatedObject(self, refreshBtnKey, refreshButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, refreshBtnKey_tb, refreshButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
