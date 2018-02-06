@@ -49,6 +49,8 @@
     self.navigationItem.rightBarButtonItems = @[go,add,clear,refresh];
 }
 
+#pragma mark - name
+
 - (void)add{
     
     NSInteger i = 0;
@@ -99,11 +101,15 @@
 }
 
 #pragma mark - mark
--(UIImage *)CollectionViewNoDataPlaceholderImage{
+-(UIImage *)PlaceholderNoDataImage{
     return [UIImage imageNamed:@"noData"];
 }
 
--(UIButton *)CollectionViewPlaceholderRefreshButton{
+- (UIImage *)PlaceholderNetErrorImage{
+    return [UIImage imageNamed:@"netErr"];
+}
+
+-(UIButton *)PlaceholderRefreshButton{
     UIButton * refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     refreshButton.layer.masksToBounds = YES;
     refreshButton.layer.cornerRadius = 4;

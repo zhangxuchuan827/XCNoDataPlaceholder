@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "ZXCNoDataPlaceholder.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,8 @@
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
     _window.backgroundColor = [UIColor whiteColor];
     [_window makeKeyAndVisible];
+    
+    zxcPlaceholderNetState = NO;
     
     return YES;
 }

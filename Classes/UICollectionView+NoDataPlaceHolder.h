@@ -14,19 +14,23 @@
 /**
  无数据占位图
  */
-- (UIImage *)CollectionViewNoDataPlaceholderImage;
+- (UIImage *)PlaceholderNoDataImage;
 /**
  网络错误的占位图，需要实现网络检测zxcPlaceholderImageNetStateBlock
  */
-- (UIImage *)CollectionViewErrorPlaceholderImage;
+- (UIImage *)PlaceholderNetErrorImage;
 /**
  占位图尺寸。默认200*200
  */
-- (CGSize)CollectionViewPlaceholderImageSize;
+- (CGSize)PlaceholderImageSize;
 /**
  刷新按钮
  */
-- (UIButton *)CollectionViewPlaceholderRefreshButton;
+- (UIButton *)PlaceholderRefreshButton;
+/**
+ 图片位置调整
+ */
+- (UIOffset)PlaceholderOffset;
 
 
 @end
@@ -34,6 +38,12 @@
 @interface UICollectionView (NoDataPlaceHolder)
 
 @property (weak) id<UICollectionViewPlaceholderImageDelegate> placeholderImageDelegate;
+
+/**
+ 刷新占位图
+ */
+- (void)refreshPlaceholderView;
+
 
 
 @end

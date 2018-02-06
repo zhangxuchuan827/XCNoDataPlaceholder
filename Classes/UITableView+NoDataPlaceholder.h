@@ -8,26 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-
 @protocol UITableViewPlaceholderImageDelegate<NSObject>
 
 @optional
 /**
  无数据占位图
  */
-- (UIImage *)tableViewNoDataPlaceholderImage;
+- (UIImage *)PlaceholderNoDataImage;
 /**
  网络错误的占位图，需要实现网络检测zxcPlaceholderImageNetStateBlock
  */
-- (UIImage *)tableViewErrorPlaceholderImage;
+- (UIImage *)PlaceholderNetErrorImage;
 /**
  占位图尺寸。默认200*200
  */
-- (CGSize)tableViewPlaceholderImageSize;
+- (CGSize)PlaceholderImageSize;
 /**
  刷新按钮
  */
-- (UIButton *)tableViewPlaceholderRefreshButton;
+- (UIButton *)PlaceholderRefreshButton;
+/**
+ 图片位置调整
+ */
+- (UIOffset)PlaceholderOffset;
+
 
 @end
 
@@ -36,5 +40,10 @@
 
 @property (weak) id<UITableViewPlaceholderImageDelegate> placeholderImageDelegate;
 
+
+/**
+ 刷新占位图
+ */
+- (void)refreshPlaceholderView;
 
 @end

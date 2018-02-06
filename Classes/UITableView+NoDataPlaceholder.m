@@ -10,37 +10,48 @@
 #import "ZXCNoDataPlaceholder.h"
 #import <objc/runtime.h>
 
-
 const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
+BOOL zxcPlaceholderNetState ;
 
 @implementation UITableView (NoDataPlaceholder)
 
 + (void)load{
+    
+    zxcPlaceholderNetState = YES;
+    
     Method old = class_getInstanceMethod(self, @selector(reloadData));
     Method current = class_getInstanceMethod(self, @selector(zxc_reloadData));
     method_exchangeImplementations(old, current);
+
+    
 }
 
 
 -(void)zxc_reloadData{
     [self zxc_reloadData];
+    [self refreshPlaceholderView];
+}
+
+
+
+- (void)refreshPlaceholderView{
     
     //若两个都没有实现，则不继续执行
-    if ( !([self.placeholderImageDelegate respondsToSelector:@selector(tableViewErrorPlaceholderImage)] ||
-        [self.placeholderImageDelegate respondsToSelector:@selector(tableViewNoDataPlaceholderImage)] )) {
+    if ( !([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNoDataImage)] ||
+           [self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)] )) {
         return;
     }
     
     [self clearBackgroundView];
-
+    
     //判断-有判断工具并且网络不正常
-    if ( self.visibleCells.count <= 0 && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
+    if ( self.visibleCells.count <= 0 && !zxcPlaceholderNetState ) {
         
-        [self loadNormalBackgroundView];
+        [self loadErrorBackgroundView];
         return;
     }
-
+    
     if (self.visibleCells.count <= 0) {
         [self loadNormalBackgroundView];
     }
@@ -49,26 +60,27 @@ const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
 
 
+
 #pragma mark -
 
 - (void)loadNormalBackgroundView{
     
-    if (![self.placeholderImageDelegate respondsToSelector:@selector(tableViewNoDataPlaceholderImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNoDataImage)]  ) {
         return;
     }
-    if (![self.placeholderImageDelegate tableViewNoDataPlaceholderImage] ) {
+    if (![self.placeholderImageDelegate PlaceholderNoDataImage] ) {
         return;
     }
     
     CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderImageSize)]) {
-        size  = [self.placeholderImageDelegate tableViewPlaceholderImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate PlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,size.width , size.height)];
-    normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.placeholderImageDelegate tableViewNoDataPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.center = [self makeOffsetWithPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+    normalView.image = [[self.placeholderImageDelegate PlaceholderNoDataImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -76,22 +88,22 @@ const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
 - (void)loadErrorBackgroundView{
     
-    if (![self.placeholderImageDelegate respondsToSelector:@selector(tableViewErrorPlaceholderImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)]  ) {
         return;
     }
-    if (![self.placeholderImageDelegate tableViewErrorPlaceholderImage] ) {
+    if (![self.placeholderImageDelegate PlaceholderNetErrorImage] ) {
         return;
     }
     
     CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderImageSize)]) {
-        size  = [self.placeholderImageDelegate tableViewPlaceholderImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate PlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 ,size.width , size.height)];
-    normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.placeholderImageDelegate tableViewErrorPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.center = [self makeOffsetWithPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+    normalView.image = [[self.placeholderImageDelegate PlaceholderNetErrorImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -99,14 +111,14 @@ const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
 - (void)addRefureshButton{
     
-    if (!( [self.placeholderImageDelegate respondsToSelector:@selector(tableViewPlaceholderRefreshButton)] &&
-        [self.placeholderImageDelegate tableViewPlaceholderRefreshButton] ) ) {
+    if (!( [self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderRefreshButton)] &&
+        [self.placeholderImageDelegate PlaceholderRefreshButton] ) ) {
         return;
     }
     
     UIView * placeholderImgView = self.backgroundView.subviews.firstObject;
     
-    UIButton * refreshButton = [self.placeholderImageDelegate tableViewPlaceholderRefreshButton];
+    UIButton * refreshButton = [self.placeholderImageDelegate PlaceholderRefreshButton];
     
     CGFloat y = refreshButton.bounds.size.height/2 + CGRectGetMaxY(placeholderImgView.frame) + 20;
     
@@ -134,6 +146,18 @@ const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 - (CGSize)defaultPlaceholderSize{
     
     return CGSizeMake(200, 200);
+}
+
+
+- (CGPoint)makeOffsetWithPoint:(CGPoint)point{
+    
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderOffset)]) return point;
+    
+    UIOffset offset = [self.placeholderImageDelegate PlaceholderOffset];
+    point.x += offset.horizontal;
+    point.y += offset.vertical;
+    
+    return point;
 }
 
 #pragma mark -

@@ -12,7 +12,6 @@
 
 const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
-
 @implementation UICollectionView (NoDataPlaceHolder)
 
 
@@ -25,26 +24,29 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 - (void)zxc_reloadData{
     [self zxc_reloadData];
+    [self refreshPlaceholderView];
+}
+
+- (void)refreshPlaceholderView{
     
     //若两个都没有实现，则不继续执行
-    if ( !([self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewNoDataPlaceholderImage)] ||
-           [self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewErrorPlaceholderImage)] )) {
+    if ( !([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNoDataImage)] ||
+           [self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)] )) {
         return;
     }
     
     [self clearBackgroundView];
     
     //判断-有判断工具并且网络不正常
-    if ( ![self hasSomeCells] && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
+    if ( ![self hasSomeCells] && !zxcPlaceholderNetState ) {
         
-        [self loadNormalBackgroundView];
+        [self loadErrorBackgroundView];
         return;
     }
     
     if (![self hasSomeCells]) {
         [self loadNormalBackgroundView];
     }
-    
 }
 
 
@@ -53,22 +55,22 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 - (void)loadNormalBackgroundView{
     
-    if (![self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewNoDataPlaceholderImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNoDataImage)]  ) {
         return;
     }
-    if (![self.placeholderImageDelegate CollectionViewNoDataPlaceholderImage] ) {
+    if (![self.placeholderImageDelegate PlaceholderNoDataImage] ) {
         return;
     }
     
     CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewPlaceholderImageSize)]) {
-        size  = [self.placeholderImageDelegate CollectionViewPlaceholderImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate PlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,size.width , size.height)];
-    normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.placeholderImageDelegate CollectionViewNoDataPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.center = [self makeOffsetWithPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+    normalView.image = [[self.placeholderImageDelegate PlaceholderNoDataImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -76,22 +78,22 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 - (void)loadErrorBackgroundView{
     
-    if (![self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewErrorPlaceholderImage)]  ) {
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)]  ) {
         return;
     }
-    if (![self.placeholderImageDelegate CollectionViewErrorPlaceholderImage] ) {
+    if (![self.placeholderImageDelegate PlaceholderNetErrorImage] ) {
         return;
     }
     
     CGSize size = [self defaultPlaceholderSize];
     
-    if ([self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewPlaceholderImageSize)]) {
-        size  = [self.placeholderImageDelegate CollectionViewPlaceholderImageSize];
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderImageSize)]) {
+        size  = [self.placeholderImageDelegate PlaceholderImageSize];
     }
     
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 ,size.width , size.height)];
-    normalView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    normalView.image = [[self.placeholderImageDelegate CollectionViewErrorPlaceholderImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.center = [self makeOffsetWithPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+    normalView.image = [[self.placeholderImageDelegate PlaceholderNetErrorImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
@@ -99,14 +101,14 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 - (void)addRefureshButton{
     
-    if (!( [self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewPlaceholderRefreshButton)] &&
-          [self.placeholderImageDelegate CollectionViewPlaceholderRefreshButton] ) ) {
+    if (!( [self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderRefreshButton)] &&
+          [self.placeholderImageDelegate PlaceholderRefreshButton] ) ) {
         return;
     }
     
     UIView * placeholderImgView = self.backgroundView.subviews.firstObject;
     
-    UIButton * refreshButton = [self.placeholderImageDelegate CollectionViewPlaceholderRefreshButton];
+    UIButton * refreshButton = [self.placeholderImageDelegate PlaceholderRefreshButton];
     
     CGFloat y = refreshButton.bounds.size.height/2 + CGRectGetMaxY(placeholderImgView.frame) + 20;
     
@@ -115,6 +117,7 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
     [self.backgroundView addSubview:refreshButton];
     
 }
+
 
 - (void)clearBackgroundView{
     
@@ -156,6 +159,16 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
     return NO;
 }
 
+- (CGPoint)makeOffsetWithPoint:(CGPoint)point{
+    
+    if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderOffset)]) return point;
+    
+    UIOffset offset = [self.placeholderImageDelegate PlaceholderOffset];
+    point.x += offset.horizontal;
+    point.y += offset.vertical;
+    
+    return point;
+}
 
 - (CGSize)defaultPlaceholderSize{
     
@@ -170,8 +183,6 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 -(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
-
-
 
 
 

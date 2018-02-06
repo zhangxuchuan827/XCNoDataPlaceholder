@@ -11,10 +11,8 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- 网络状态检测 正常Return YES ,网络不可达 Return NO
- */
-static BOOL (^zxcPlaceholderImageNetStateBlock)(void) ;
+//网络状态标志符，需在网络监听器中修改 YES：网络正常（默认） NO：无网络 
+extern BOOL zxcPlaceholderNetState;
 
 
 #import "UICollectionView+NoDataPlaceHolder.h"
