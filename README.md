@@ -38,10 +38,10 @@
 注意：若要实现网络错误状态下显示相应占位图需给zxcBackgroundImageNetStateBlock赋值 return YES表示网络正常
 
 
-## TableViewDemo
+## TableViewDemo（CollectionView使用方式相同）
 
 ```
-<UITableViewPlaceholderImageDelegate>
+<ZXCNoDataPlaceholderDelegate>
 
 //-----
 
@@ -82,8 +82,6 @@ e.p.
 ```
 
 
-
-## 具体代码见Demo （CollectionView使用方式相同）
 
 ## Apache License 2.0
 
