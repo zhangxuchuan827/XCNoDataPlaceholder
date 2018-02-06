@@ -12,13 +12,11 @@
 
 const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
-BOOL zxcPlaceholderNetState ;
+BOOL zxcPlaceholderNetState  = YES ;
 
 @implementation UITableView (NoDataPlaceholder)
 
 + (void)load{
-
-    zxcPlaceholderNetState = YES;
 
     Method old = class_getInstanceMethod(self, @selector(reloadData));
     Method current = class_getInstanceMethod(self, @selector(zxc_reloadData));
@@ -51,6 +49,7 @@ BOOL zxcPlaceholderNetState ;
     }
     
     if (self.visibleCells.count <= 0) {
+
         [self loadNormalBackgroundView];
     }
     

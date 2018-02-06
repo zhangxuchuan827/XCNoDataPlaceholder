@@ -45,6 +45,7 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
     }
     
     if (![self hasSomeCells]) {
+        
         [self loadNormalBackgroundView];
     }
 }

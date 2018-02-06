@@ -71,7 +71,7 @@
 
 - (void)go{
     
-    zxcPlaceholderNetState = YES;
+    zxcPlaceholderNetState = NO;
     
     [self.navigationController pushViewController:[CollectionVC new] animated:YES];
 }
