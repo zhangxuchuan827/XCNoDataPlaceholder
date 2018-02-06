@@ -14,9 +14,9 @@
 		2786F6B52028930700393643 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6B42028930700393643 /* main.m */; };
 		2786F6BF2028930700393643 /* PlaceholderDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6BE2028930700393643 /* PlaceholderDemoTests.m */; };
 		2786F6CA2028930700393643 /* PlaceholderDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6C92028930700393643 /* PlaceholderDemoUITests.m */; };
-		2786F6DC202893A600393643 /* UICollectionView+NoDataPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6D9202893A600393643 /* UICollectionView+NoDataPlaceHolder.m */; };
-		2786F6DD202893A600393643 /* UITableView+NoDataPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6DB202893A600393643 /* UITableView+NoDataPlaceholder.m */; };
 		2786F6E12028A06F00393643 /* CollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6E02028A06F00393643 /* CollectionVC.m */; };
+		F39824DC20294F6D00ED476C /* UITableView+NoDataPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */; };
+		F39824DD20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,13 +52,13 @@
 		2786F6C52028930700393643 /* PlaceholderDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaceholderDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2786F6C92028930700393643 /* PlaceholderDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderDemoUITests.m; sourceTree = "<group>"; };
 		2786F6CB2028930700393643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2786F6D8202893A600393643 /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
-		2786F6D9202893A600393643 /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
-		2786F6DA202893A600393643 /* UITableView+NoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoDataPlaceholder.h"; sourceTree = "<group>"; };
-		2786F6DB202893A600393643 /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
-		2786F6DE2028940900393643 /* ZXCNoDataPlaceholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholder.h; sourceTree = "<group>"; };
 		2786F6DF2028A06F00393643 /* CollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionVC.h; sourceTree = "<group>"; };
 		2786F6E02028A06F00393643 /* CollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionVC.m; sourceTree = "<group>"; };
+		F39824D720294F6D00ED476C /* UITableView+NoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoDataPlaceholder.h"; sourceTree = "<group>"; };
+		F39824D820294F6D00ED476C /* ZXCNoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholder.h; sourceTree = "<group>"; };
+		F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
+		F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
+		F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +109,7 @@
 		2786F6A42028930700393643 /* PlaceholderDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2786F6D7202893A600393643 /* ZXCNoDataPlaceholderSrc */,
+				F39824D620294F6D00ED476C /* Classes */,
 				2786F6A52028930700393643 /* AppDelegate.h */,
 				2786F6A62028930700393643 /* AppDelegate.m */,
 				2786F6A82028930700393643 /* ViewController.h */,
@@ -142,17 +142,17 @@
 			path = PlaceholderDemoUITests;
 			sourceTree = "<group>";
 		};
-		2786F6D7202893A600393643 /* ZXCNoDataPlaceholderSrc */ = {
+		F39824D620294F6D00ED476C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2786F6D8202893A600393643 /* UICollectionView+NoDataPlaceHolder.h */,
-				2786F6D9202893A600393643 /* UICollectionView+NoDataPlaceHolder.m */,
-				2786F6DA202893A600393643 /* UITableView+NoDataPlaceholder.h */,
-				2786F6DB202893A600393643 /* UITableView+NoDataPlaceholder.m */,
-				2786F6DE2028940900393643 /* ZXCNoDataPlaceholder.h */,
+				F39824D720294F6D00ED476C /* UITableView+NoDataPlaceholder.h */,
+				F39824D820294F6D00ED476C /* ZXCNoDataPlaceholder.h */,
+				F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */,
+				F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */,
+				F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */,
 			);
-			name = ZXCNoDataPlaceholderSrc;
-			path = ../../ZXCNoDataPlaceholderSrc;
+			name = Classes;
+			path = ../../Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,9 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2786F6AA2028930700393643 /* ViewController.m in Sources */,
-				2786F6DC202893A600393643 /* UICollectionView+NoDataPlaceHolder.m in Sources */,
 				2786F6E12028A06F00393643 /* CollectionVC.m in Sources */,
-				2786F6DD202893A600393643 /* UITableView+NoDataPlaceholder.m in Sources */,
+				F39824DC20294F6D00ED476C /* UITableView+NoDataPlaceholder.m in Sources */,
+				F39824DD20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m in Sources */,
 				2786F6B52028930700393643 /* main.m in Sources */,
 				2786F6A72028930700393643 /* AppDelegate.m in Sources */,
 			);
