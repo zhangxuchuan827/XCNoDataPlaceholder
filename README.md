@@ -49,15 +49,15 @@ _tableView.placeholderImageDelegate = self;
 
 //------
 
-- (UIImage *)tableViewNoDataPlaceholderImage{
+- (UIImage *) PlaceholderNoDataImage{
     return [UIImage imageNamed:@"noData"];
 }
 
-- (UIImage *)tableViewErrorPlaceholderImage{
+- (UIImage *)PlaceholderNetErrorImage{
 	return [UIImage imageNamed:@"netErr"];
 }
 
--(UIButton *)tableViewPlaceholderRefreshButton{
+- (UIButton *)PlaceholderRefreshButton{
     UIButton * refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     return refreshButton;
 }
