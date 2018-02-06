@@ -16,7 +16,7 @@
  */
 - (UIImage *)CollectionViewNoDataPlaceholderImage;
 /**
- 网络错误的占位图，需要实现网络检测zxcBackgroundImageNetStateBlock
+ 网络错误的占位图，需要实现网络检测zxcPlaceholderImageNetStateBlock
  */
 - (UIImage *)CollectionViewErrorPlaceholderImage;
 /**

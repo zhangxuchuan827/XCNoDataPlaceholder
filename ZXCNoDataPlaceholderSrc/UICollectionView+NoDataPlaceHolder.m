@@ -30,7 +30,7 @@ const char * refreshBtnKey_cl = "refreshBtnKey_cl";
     
     
     //判断-有判断工具并且网络不正常
-    if ( self.visibleCells.count <= 0 && zxcBackgroundImageNetStateBlock && !zxcBackgroundImageNetStateBlock() ) {
+    if ( self.visibleCells.count <= 0 && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
         
         [self loadNormalBackgroundView];
         return;

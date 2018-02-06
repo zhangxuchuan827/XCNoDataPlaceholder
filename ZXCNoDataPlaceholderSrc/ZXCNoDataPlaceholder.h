@@ -12,9 +12,9 @@
 #import <Foundation/Foundation.h>
 
 /**
- 网络状态检测 正常Return YßES ,网络不可达 Return NO
+ 网络状态检测 正常Return YES ,网络不可达 Return NO
  */
-static BOOL (^zxcBackgroundImageNetStateBlock)(void) ;
+static BOOL (^zxcPlaceholderImageNetStateBlock)(void) ;
 
 
 #import "UICollectionView+NoDataPlaceHolder.h"
