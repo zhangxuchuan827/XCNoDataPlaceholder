@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-%20Apache%20LICENSE%202.0-yellow.svg)]()
 [![CocoaPods](https://img.shields.io/badge/pod-0.0.2-green.svg)]()
-[![Support](https://img.shields.io/badge/support-iOS7.0+-blue.svg?style=flat)](https://www.apple.com/nl/ios/);
+[![Support](https://img.shields.io/badge/support-iOS7.0+-blue.svg?style=flat)](https://www.apple.com/nl/ios/)
 
 一个简单医用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
