@@ -1,4 +1,9 @@
 # ZXCNoDataPlaceholder
+
+[![License Apache LICENSE 2.0](https://github.com/zhangxuchuan827/ZXCNoDataPlaceholder/blob/master/LICENSE)]
+[![CocoaPods](https://cocoapods.org/pods/ZXCNoDataPlaceHolder)]
+[![Support](https://img.shields.io/badge/support-iOS7.0+-blue.svg?style=flat)](https://www.apple.com/nl/ios/);
+
 一个简单医用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
 ![数据图片](./img.png)
