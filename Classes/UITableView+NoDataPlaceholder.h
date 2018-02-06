@@ -7,39 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@protocol UITableViewPlaceholderImageDelegate<NSObject>
-
-@optional
-/**
- 无数据占位图
- */
-- (UIImage *)PlaceholderNoDataImage;
-/**
- 网络错误的占位图，需要实现网络检测zxcPlaceholderImageNetStateBlock
- */
-- (UIImage *)PlaceholderNetErrorImage;
-/**
- 占位图尺寸。默认200*200
- */
-- (CGSize)PlaceholderImageSize;
-/**
- 刷新按钮
- */
-- (UIButton *)PlaceholderRefreshButton;
-/**
- 图片位置调整
- */
-- (UIOffset)PlaceholderOffset;
-
-
-@end
+#import "ZXCNoDataPlaceholderProtocol.h"
 
 
 @interface UITableView (NoDataPlaceholder)
 
-@property (weak) id<UITableViewPlaceholderImageDelegate> placeholderImageDelegate;
-
+@property (weak) id<ZXCNoDataPlaceholderProtocol> placeholderImageDelegate;
 
 /**
  刷新占位图

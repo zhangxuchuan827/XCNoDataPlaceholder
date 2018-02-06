@@ -10,25 +10,29 @@
 2.遵循协议，实现对应的代理方法
 
 
-## TableViewProtocol
+## Protocol
 
 ```
 /**
  无数据占位图
  */
-- (UIImage *)tableViewNoDataPlaceholderImage;
+- (UIImage *)PlaceholderNoDataImage;
 /**
- 网络错误的占位图，需要实现网络检测zxcBackgroundImageNetStateBlock  
+ 网络错误的占位图
  */
-- (UIImage *)tableViewErrorPlaceholderImage;
+- (UIImage *)PlaceholderNetErrorImage;
 /**
  占位图尺寸。默认200*200
  */
-- (CGSize)tableViewPlaceholderImageSize;
+- (CGSize)PlaceholderImageSize;
+/**
+ 图片位置调整
+ */
+- (UIOffset)PlaceholderOffset;
 /**
  刷新按钮
  */
-- (UIButton *)tableViewPlaceholderRefreshButton;
+- (UIButton *)PlaceholderRefreshButton;
 
 ```
 注意：若要实现网络错误状态下显示相应占位图需给zxcBackgroundImageNetStateBlock赋值 return YES表示网络正常
@@ -61,9 +65,26 @@ _tableView.placeholderImageDelegate = self;
 
 ```
 
-## 更改说明
-在 +load 将 reloadData 和 zxc_reloadData 做了方法交换， 若有特定需求可做相应修改。
+## 网络错误占位图
+
+需要在网络状态监听器中做状态修改
+
+```
+e.p.
+[[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+        zxcPlaceholderNetState = NO;
+    }else{
+        zxcPlaceholderNetState = YES;
+    }
+}];
+
+```
+
+
 
 ## 具体代码见Demo （CollectionView使用方式相同）
+
+## Apache License 2.0
 
 

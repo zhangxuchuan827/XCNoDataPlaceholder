@@ -59,6 +59,7 @@
 		F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
 		F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
 		F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
+		F39824E42029961C00ED476C /* ZXCNoDataPlaceholderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholderProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F39824D820294F6D00ED476C /* ZXCNoDataPlaceholder.h */,
+				F39824E42029961C00ED476C /* ZXCNoDataPlaceholderProtocol.h */,
 				F39824D720294F6D00ED476C /* UITableView+NoDataPlaceholder.h */,
 				F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */,
 				F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */,

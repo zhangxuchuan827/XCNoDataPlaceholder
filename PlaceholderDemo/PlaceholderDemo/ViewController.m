@@ -11,7 +11,7 @@
 
 #import "CollectionVC.h"
 
-@interface ViewController ()<UITableViewDataSource,UITableViewPlaceholderImageDelegate>
+@interface ViewController ()<UITableViewDataSource,ZXCNoDataPlaceholderProtocol>
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSMutableArray * dataSource;

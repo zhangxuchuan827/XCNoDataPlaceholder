@@ -177,10 +177,10 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 #pragma mark -
 
--(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+-(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     return objc_getAssociatedObject(self, imageDelegateKey_cl);
 }
--(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+-(void)setPlaceholderImageDelegate:(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 

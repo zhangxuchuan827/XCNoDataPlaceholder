@@ -11,7 +11,7 @@
 
 #import "ViewController.h"
 
-@interface CollectionVC()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewPlaceholderImageDelegate>
+@interface CollectionVC()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZXCNoDataPlaceholderProtocol>
 
 @property (nonatomic , strong)UICollectionView * collectionView;
 

@@ -14,7 +14,7 @@
 //网络状态标志符，需在网络监听器中修改 YES：网络正常（默认） NO：无网络 
 extern BOOL zxcPlaceholderNetState;
 
-
+#import "ZXCNoDataPlaceholderProtocol.h"
 #import "UICollectionView+NoDataPlaceHolder.h"
 #import "UITableView+NoDataPlaceholder.h"
 

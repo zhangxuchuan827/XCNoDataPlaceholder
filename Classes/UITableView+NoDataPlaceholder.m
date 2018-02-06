@@ -17,14 +17,12 @@ BOOL zxcPlaceholderNetState ;
 @implementation UITableView (NoDataPlaceholder)
 
 + (void)load{
-    
+
     zxcPlaceholderNetState = YES;
-    
+
     Method old = class_getInstanceMethod(self, @selector(reloadData));
     Method current = class_getInstanceMethod(self, @selector(zxc_reloadData));
     method_exchangeImplementations(old, current);
-
-    
 }
 
 
@@ -162,11 +160,11 @@ BOOL zxcPlaceholderNetState ;
 
 #pragma mark -
 
--(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+-(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     return objc_getAssociatedObject(self, imageDelegateKey_tb);
 }
 
--(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
+-(void)setPlaceholderImageDelegate:(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_tb, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
