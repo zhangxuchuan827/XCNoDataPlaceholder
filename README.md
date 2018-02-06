@@ -61,6 +61,9 @@ _tableView.placeholderImageDelegate = self;
 
 ```
 
+## 更改说明
+在 +load 将 reloadData 和 zxc_reloadData 做了方法交换， 若有特定需求可做相应修改。
+
 ## 具体代码见Demo （CollectionView使用方式相同）
 
 

@@ -25,6 +25,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.title = @"TableView";
+    
     _dataSource = [NSMutableArray new];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
@@ -33,13 +35,13 @@
     [_tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"cell"];
     [self.view addSubview:_tableView];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(go)];
+    UIBarButtonItem * go  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(go)];
     
     UIBarButtonItem * add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
     UIBarButtonItem * clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clear)];
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     
-    self.navigationItem.rightBarButtonItems = @[add,clear,refresh];
+    self.navigationItem.rightBarButtonItems = @[go,add,clear,refresh];
 }
 
 - (void)add{
@@ -61,7 +63,7 @@
 }
 - (void)refresh{
     
-    [self.tableView zxc_reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)go{
@@ -96,6 +98,12 @@
     [refreshButton addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
     return refreshButton;
 }
+
+-(void)dealloc{
+    
+    NSLog(@"销毁了ViewController");
+}
+
 
 
 @end

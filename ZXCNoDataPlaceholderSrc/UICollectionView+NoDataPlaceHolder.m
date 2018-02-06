@@ -11,14 +11,20 @@
 #import <objc/runtime.h>
 
 const char * imageDelegateKey_cl = "imageDelegateKey_cl";
-const char * refreshBtnKey_cl = "refreshBtnKey_cl";
 
 
 @implementation UICollectionView (NoDataPlaceHolder)
 
 
--(void)zxc_reloadData{
-    [self reloadData];
++ (void)load{
+    Method old = class_getInstanceMethod(self, @selector(reloadData));
+    Method current = class_getInstanceMethod(self, @selector(zxc_reloadData));
+    method_exchangeImplementations(old, current);
+}
+
+
+- (void)zxc_reloadData{
+    [self zxc_reloadData];
     
     //若两个都没有实现，则不继续执行
     if ( !([self.placeholderImageDelegate respondsToSelector:@selector(CollectionViewNoDataPlaceholderImage)] ||
@@ -28,17 +34,14 @@ const char * refreshBtnKey_cl = "refreshBtnKey_cl";
     
     [self clearBackgroundView];
     
-    
     //判断-有判断工具并且网络不正常
-    if ( self.visibleCells.count <= 0 && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
+    if ( ![self hasSomeCells] && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
         
         [self loadNormalBackgroundView];
         return;
     }
     
-    
-    
-    if (self.visibleCells.count <= 0) {
+    if (![self hasSomeCells]) {
         [self loadNormalBackgroundView];
     }
     
@@ -115,7 +118,6 @@ const char * refreshBtnKey_cl = "refreshBtnKey_cl";
 
 - (void)clearBackgroundView{
     
-    
     [self.backgroundView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
@@ -128,7 +130,31 @@ const char * refreshBtnKey_cl = "refreshBtnKey_cl";
 
 #pragma mark -
 
-
+- (BOOL)hasSomeCells{
+    if ([self.dataSource respondsToSelector:@selector(collectionView:numberOfItemsInSection:)]) {
+        
+        if ([self.dataSource respondsToSelector:@selector(numberOfItemsInSection:)]) {
+            
+            NSInteger sections = [self.dataSource numberOfSectionsInCollectionView:self];
+            
+            if(sections > 1){
+                
+                for (int i = 0; i < sections; i++) {
+                    if ([self.dataSource collectionView:self numberOfItemsInSection:i] > 0) {
+                        return YES;
+                    }
+                }
+                
+            }
+        }
+        
+        if ([self.dataSource collectionView:self numberOfItemsInSection:0] > 0) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 
 - (CGSize)defaultPlaceholderSize{
@@ -142,15 +168,9 @@ const char * refreshBtnKey_cl = "refreshBtnKey_cl";
     return objc_getAssociatedObject(self, imageDelegateKey_cl);
 }
 -(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
-    objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
--(UIButton *)refreshButton{
-    return objc_getAssociatedObject(self, refreshBtnKey_cl);
-}
--(void)setRefreshButton:(UIButton *)refreshButton{
-    objc_setAssociatedObject(self, refreshBtnKey_cl, refreshButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
 
 

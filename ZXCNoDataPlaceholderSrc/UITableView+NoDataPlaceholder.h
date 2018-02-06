@@ -34,11 +34,7 @@
 
 @interface UITableView (NoDataPlaceholder)
 
-@property (nonatomic, weak) id<UITableViewPlaceholderImageDelegate> placeholderImageDelegate;
-
-
-///刷新
--(void)zxc_reloadData;
+@property (weak) id<UITableViewPlaceholderImageDelegate> placeholderImageDelegate;
 
 
 @end

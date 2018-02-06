@@ -12,13 +12,19 @@
 
 
 const char * imageDelegateKey_tb = "imageDelegateKey_tb";
-const char * refreshBtnKey_tb = "refreshBtnKey_tb";
 
 
 @implementation UITableView (NoDataPlaceholder)
 
++ (void)load{
+    Method old = class_getInstanceMethod(self, @selector(reloadData));
+    Method current = class_getInstanceMethod(self, @selector(zxc_reloadData));
+    method_exchangeImplementations(old, current);
+}
+
+
 -(void)zxc_reloadData{
-    [self reloadData];
+    [self zxc_reloadData];
     
     //若两个都没有实现，则不继续执行
     if ( !([self.placeholderImageDelegate respondsToSelector:@selector(tableViewErrorPlaceholderImage)] ||
@@ -28,16 +34,13 @@ const char * refreshBtnKey_tb = "refreshBtnKey_tb";
     
     [self clearBackgroundView];
 
-    
     //判断-有判断工具并且网络不正常
     if ( self.visibleCells.count <= 0 && zxcPlaceholderImageNetStateBlock && !zxcPlaceholderImageNetStateBlock() ) {
         
         [self loadNormalBackgroundView];
         return;
     }
-    
-    
-    
+
     if (self.visibleCells.count <= 0) {
         [self loadNormalBackgroundView];
     }
@@ -128,9 +131,6 @@ const char * refreshBtnKey_tb = "refreshBtnKey_tb";
 
 #pragma mark -
 
-
-
-
 - (CGSize)defaultPlaceholderSize{
     
     return CGSizeMake(200, 200);
@@ -143,15 +143,10 @@ const char * refreshBtnKey_tb = "refreshBtnKey_tb";
 }
 
 -(void)setPlaceholderImageDelegate:(id<UITableViewPlaceholderImageDelegate>)placeholderImageDelegate{
-    objc_setAssociatedObject(self, imageDelegateKey_tb, placeholderImageDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, imageDelegateKey_tb, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
--(UIButton *)refreshButton{
-    return objc_getAssociatedObject(self, refreshBtnKey_tb);
-}
--(void)setRefreshButton:(UIButton *)refreshButton{
-    objc_setAssociatedObject(self, refreshBtnKey_tb, refreshButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
+
 
 
 

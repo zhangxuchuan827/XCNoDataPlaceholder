@@ -9,6 +9,8 @@
 #import "CollectionVC.h"
 #import "ZXCNoDataPlaceholder.h"
 
+#import "ViewController.h"
+
 @interface CollectionVC()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewPlaceholderImageDelegate>
 
 @property (nonatomic , strong)UICollectionView * collectionView;
@@ -24,6 +26,8 @@
     
     [super viewDidLoad];
     
+    self.title = @"CollectionView";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     _dataSource = [NSMutableArray new];
@@ -36,11 +40,13 @@
     
     [self.view addSubview:_collectionView];
     
+    UIBarButtonItem * go = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(go)];
+    
     UIBarButtonItem * add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
     UIBarButtonItem * clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clear)];
     UIBarButtonItem * refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     
-    self.navigationItem.rightBarButtonItems = @[add,clear,refresh];
+    self.navigationItem.rightBarButtonItems = @[go,add,clear,refresh];
 }
 
 - (void)add{
@@ -61,8 +67,14 @@
 }
 - (void)refresh{
     
-    [self.collectionView zxc_reloadData];
+    [self.collectionView reloadData];
 }
+
+- (void)go{
+    
+    [self.navigationController pushViewController:[ViewController new] animated:YES];
+}
+
 
 #pragma mark -
 
@@ -72,7 +84,7 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell *  cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [self.collectionView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [cell.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
@@ -91,7 +103,7 @@
     return [UIImage imageNamed:@"noData"];
 }
 
--(UIButton *)tableViewPlaceholderRefreshButton{
+-(UIButton *)CollectionViewPlaceholderRefreshButton{
     UIButton * refreshButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     refreshButton.layer.masksToBounds = YES;
     refreshButton.layer.cornerRadius = 4;
@@ -103,6 +115,11 @@
     return refreshButton;
 }
 
+
+-(void)dealloc{
+    
+    NSLog(@"销毁了CollectionVC");
+}
 
 
 @end

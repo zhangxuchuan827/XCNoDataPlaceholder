@@ -33,10 +33,7 @@
 
 @interface UICollectionView (NoDataPlaceHolder)
 
-@property (nonatomic, weak) id<UICollectionViewPlaceholderImageDelegate> placeholderImageDelegate;
-
-///刷新
--(void)zxc_reloadData;
+@property (weak) id<UICollectionViewPlaceholderImageDelegate> placeholderImageDelegate;
 
 
 @end
