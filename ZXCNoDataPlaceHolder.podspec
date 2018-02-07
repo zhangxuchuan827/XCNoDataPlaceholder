@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZXCNoDataPlaceHolder"
-  s.version      = "1.0.0"
-  s.summary      = "这是一个简单易用的空视图占位图插件，适用于UITableView和UICollectionView"
+  s.version      = "1.0.1"
+  s.summary      = "这是一个简单易用的空列表占位图插件，适用于UITableView和UICollectionView"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "Classes/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

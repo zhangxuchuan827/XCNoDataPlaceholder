@@ -9,7 +9,6 @@
 #ifndef ZXCNoDataPlaceholder_h
 #define ZXCNoDataPlaceholder_h
 
-#import <Foundation/Foundation.h>
 
 //网络状态标志符，需在网络监听器中修改 YES：网络正常（默认） NO：无网络 
 extern BOOL zxcPlaceholderNetState;
