@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZXCNoDataPlaceHolder"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "这是一个简单易用的空列表占位图插件，适用于UITableView和UICollectionView"
 
   # This description is used to generate tags and improve search results.
@@ -91,10 +91,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "ZXCNoDataPlaceholder", "ZXCNoDataPlaceholder/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "ZXCNoDataPlaceholder/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

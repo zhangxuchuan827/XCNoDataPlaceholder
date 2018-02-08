@@ -12,6 +12,8 @@
 
 const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
+
+
 @implementation UICollectionView (NoDataPlaceHolder)
 
 

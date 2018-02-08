@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern BOOL zxcPlaceholderNetState ;
+
 @protocol ZXCNoDataPlaceholderProtocol <NSObject>
 
 

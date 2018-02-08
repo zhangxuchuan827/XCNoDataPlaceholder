@@ -15,8 +15,8 @@
 		2786F6BF2028930700393643 /* PlaceholderDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6BE2028930700393643 /* PlaceholderDemoTests.m */; };
 		2786F6CA2028930700393643 /* PlaceholderDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6C92028930700393643 /* PlaceholderDemoUITests.m */; };
 		2786F6E12028A06F00393643 /* CollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2786F6E02028A06F00393643 /* CollectionVC.m */; };
-		F39824DC20294F6D00ED476C /* UITableView+NoDataPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */; };
-		F39824DD20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */; };
+		F32DD6ED202C37D0004BC26C /* UITableView+NoDataPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = F32DD6EA202C37D0004BC26C /* UITableView+NoDataPlaceholder.m */; };
+		F32DD6EE202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = F32DD6EC202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,12 +54,12 @@
 		2786F6CB2028930700393643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2786F6DF2028A06F00393643 /* CollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionVC.h; sourceTree = "<group>"; };
 		2786F6E02028A06F00393643 /* CollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionVC.m; sourceTree = "<group>"; };
-		F39824D720294F6D00ED476C /* UITableView+NoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoDataPlaceholder.h"; sourceTree = "<group>"; };
-		F39824D820294F6D00ED476C /* ZXCNoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholder.h; sourceTree = "<group>"; };
-		F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
-		F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
-		F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
-		F39824E42029961C00ED476C /* ZXCNoDataPlaceholderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholderProtocol.h; sourceTree = "<group>"; };
+		F32DD6E8202C37D0004BC26C /* UITableView+NoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoDataPlaceholder.h"; sourceTree = "<group>"; };
+		F32DD6E9202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
+		F32DD6EA202C37D0004BC26C /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
+		F32DD6EB202C37D0004BC26C /* ZXCNoDataPlaceholderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholderProtocol.h; sourceTree = "<group>"; };
+		F32DD6EC202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
+		F32DD6EF202C37E4004BC26C /* ZXCNoDataPlaceholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 		2786F6A42028930700393643 /* PlaceholderDemo */ = {
 			isa = PBXGroup;
 			children = (
-				F39824D620294F6D00ED476C /* Classes */,
+				F32DD6E6202C37D0004BC26C /* ZXCNoDataPlaceholder */,
 				2786F6A52028930700393643 /* AppDelegate.h */,
 				2786F6A62028930700393643 /* AppDelegate.m */,
 				2786F6A82028930700393643 /* ViewController.h */,
@@ -143,18 +143,26 @@
 			path = PlaceholderDemoUITests;
 			sourceTree = "<group>";
 		};
-		F39824D620294F6D00ED476C /* Classes */ = {
+		F32DD6E6202C37D0004BC26C /* ZXCNoDataPlaceholder */ = {
 			isa = PBXGroup;
 			children = (
-				F39824D820294F6D00ED476C /* ZXCNoDataPlaceholder.h */,
-				F39824E42029961C00ED476C /* ZXCNoDataPlaceholderProtocol.h */,
-				F39824D720294F6D00ED476C /* UITableView+NoDataPlaceholder.h */,
-				F39824DA20294F6D00ED476C /* UITableView+NoDataPlaceholder.m */,
-				F39824D920294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.h */,
-				F39824DB20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m */,
+				F32DD6E7202C37D0004BC26C /* Classes */,
+				F32DD6EF202C37E4004BC26C /* ZXCNoDataPlaceholder.h */,
 			);
-			name = Classes;
-			path = ../../Classes;
+			name = ZXCNoDataPlaceholder;
+			path = ../../ZXCNoDataPlaceholder;
+			sourceTree = "<group>";
+		};
+		F32DD6E7202C37D0004BC26C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F32DD6E8202C37D0004BC26C /* UITableView+NoDataPlaceholder.h */,
+				F32DD6EA202C37D0004BC26C /* UITableView+NoDataPlaceholder.m */,
+				F32DD6E9202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.h */,
+				F32DD6EC202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.m */,
+				F32DD6EB202C37D0004BC26C /* ZXCNoDataPlaceholderProtocol.h */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,11 +298,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2786F6AA2028930700393643 /* ViewController.m in Sources */,
+				F32DD6EE202C37D0004BC26C /* UICollectionView+NoDataPlaceHolder.m in Sources */,
 				2786F6E12028A06F00393643 /* CollectionVC.m in Sources */,
-				F39824DC20294F6D00ED476C /* UITableView+NoDataPlaceholder.m in Sources */,
-				F39824DD20294F6D00ED476C /* UICollectionView+NoDataPlaceHolder.m in Sources */,
 				2786F6B52028930700393643 /* main.m in Sources */,
 				2786F6A72028930700393643 /* AppDelegate.m in Sources */,
+				F32DD6ED202C37D0004BC26C /* UITableView+NoDataPlaceholder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
