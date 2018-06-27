@@ -27,6 +27,8 @@
     
     self.title = @"TableView";
     
+    zxcPlaceholderNetState = NO;
+    
     _dataSource = [NSMutableArray new];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];

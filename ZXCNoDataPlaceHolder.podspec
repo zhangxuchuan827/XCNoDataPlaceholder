@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ZXCNoDataPlaceHolder"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "这是一个简单易用的空列表占位图插件，适用于UITableView和UICollectionView"
 
   # This description is used to generate tags and improve search results.
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "5.0"
+  s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"

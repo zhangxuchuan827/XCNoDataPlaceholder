@@ -30,6 +30,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    zxcPlaceholderNetState = YES;
+    
     _dataSource = [NSMutableArray new];
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:[UICollectionViewFlowLayout new]];
