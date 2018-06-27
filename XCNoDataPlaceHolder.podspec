@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint ZXCNoDataPlaceholder.podspec' to ensure this is a
+#  Be sure to run `pod spec lint XCNoDataPlaceholder.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "ZXCNoDataPlaceholder"
-  s.version      = "1.0.5"
+  s.name         = "XCNoDataPlaceholder"
+  s.version      = "1.0.0"
   s.summary      = "这是一个简单易用的空列表占位图插件，适用于UITableView和UICollectionView"
 
   # This description is used to generate tags and improve search results.
@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
   这是一个简单易用的空视图占位图插件，适用于UITableView和UICollectionView，使用方法超级简单直接引用并且实现代理方法即可
                    DESC
 
-  s.homepage     = "https://github.com/zhangxuchuan827/ZXCNoDataPlaceholder"
-  # s.screenshots  = "github.com/zhangxuchuan827/ZXCNoDataPlaceholder/blob/master/img.png"
+  s.homepage     = "https://github.com/zhangxuchuan827/XCNoDataPlaceholder"
+  # s.screenshots  = "github.com/zhangxuchuan827/XCNoDataPlaceholder/blob/master/img.png"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/zhangxuchuan827/ZXCNoDataPlaceholder.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/zhangxuchuan827/XCNoDataPlaceholder.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,10 +91,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "ZXCNoDataPlaceholder", "ZXCNoDataPlaceholder/**/*.{h,m}"
+  s.source_files  = "XCNoDataPlaceholder", "XCNoDataPlaceholder/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "ZXCNoDataPlaceholder/**/*.h"
+  s.public_header_files = "XCNoDataPlaceholder/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

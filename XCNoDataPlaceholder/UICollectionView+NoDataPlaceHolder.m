@@ -7,7 +7,7 @@
 //
 
 #import "UICollectionView+NoDataPlaceHolder.h"
-#import "ZXCNoDataPlaceholder.h"
+#import "XCNoDataPlaceholder.h"
 #import <objc/runtime.h>
 
 const char * imageDelegateKey_cl = "imageDelegateKey_cl";
@@ -40,7 +40,7 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
     [self clearBackgroundView];
     
     //判断-有判断工具并且网络不正常
-    if ( ![self hasSomeCells] && !zxcPlaceholderNetState ) {
+    if ( ![self hasSomeCells] && !xcPlaceholderNetState ) {
         
         [self loadErrorBackgroundView];
         return;
@@ -180,10 +180,10 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 #pragma mark -
 
--(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
+-(id<XCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     return objc_getAssociatedObject(self, imageDelegateKey_cl);
 }
--(void)setPlaceholderImageDelegate:(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
+-(void)setPlaceholderImageDelegate:(id<XCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 

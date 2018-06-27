@@ -1,5 +1,5 @@
 //
-//  ZXCNoDataPlaceholderProtocol.h
+//  XCNoDataPlaceholderProtocol.h
 //  PlaceholderDemo
 //
 //  Created by 张绪川 on 2018/2/6.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern BOOL zxcPlaceholderNetState ;
+extern BOOL xcPlaceholderNetState ;
 
-@protocol ZXCNoDataPlaceholderProtocol <NSObject>
+@protocol XCNoDataPlaceholderProtocol <NSObject>
 
 
 @optional

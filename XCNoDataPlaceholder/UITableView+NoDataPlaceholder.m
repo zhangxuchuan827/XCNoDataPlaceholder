@@ -1,5 +1,5 @@
 //
-//  UITableView+reload.m
+//  UITableView+NoDataPlaceholder.m
 //  StandardMVVM
 //
 //  Created by 张绪川 on 2018/2/2.
@@ -7,12 +7,12 @@
 //
 
 #import "UITableView+NoDataPlaceholder.h"
-#import "ZXCNoDataPlaceholder.h"
+#import "XCNoDataPlaceholder.h"
 #import <objc/runtime.h>
 
 const char * imageDelegateKey_tb = "imageDelegateKey_tb";
 
-BOOL zxcPlaceholderNetState  = YES ;
+BOOL xcPlaceholderNetState  = YES ;
 
 @implementation UITableView (NoDataPlaceholder)
 
@@ -42,7 +42,7 @@ BOOL zxcPlaceholderNetState  = YES ;
     [self clearBackgroundView];
     
     //判断-有判断工具并且网络不正常
-    if ( self.visibleCells.count <= 0 && !zxcPlaceholderNetState ) {
+    if ( self.visibleCells.count <= 0 && !xcPlaceholderNetState ) {
         
         [self loadErrorBackgroundView];
         return;
@@ -159,11 +159,11 @@ BOOL zxcPlaceholderNetState  = YES ;
 
 #pragma mark -
 
--(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
+-(id<XCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     return objc_getAssociatedObject(self, imageDelegateKey_tb);
 }
 
--(void)setPlaceholderImageDelegate:(id<ZXCNoDataPlaceholderProtocol>)placeholderImageDelegate{
+-(void)setPlaceholderImageDelegate:(id<XCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_tb, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 

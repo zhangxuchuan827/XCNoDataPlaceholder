@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "ZXCNoDataPlaceholder.h"
+#import "XCNoDataPlaceholder.h"
 
 #import "CollectionVC.h"
 
-@interface ViewController ()<UITableViewDataSource,ZXCNoDataPlaceholderProtocol>
+@interface ViewController ()<UITableViewDataSource,XCNoDataPlaceholderProtocol>
 
 @property (nonatomic, strong) UITableView * tableView;
 @property (nonatomic, strong) NSMutableArray * dataSource;
@@ -27,7 +27,7 @@
     
     self.title = @"TableView";
     
-    zxcPlaceholderNetState = NO;
+    xcPlaceholderNetState = NO;
     
     _dataSource = [NSMutableArray new];
 
@@ -73,7 +73,7 @@
 
 - (void)go{
     
-    zxcPlaceholderNetState = NO;
+    xcPlaceholderNetState = NO;
     
     [self.navigationController pushViewController:[CollectionVC new] animated:YES];
 }

@@ -7,11 +7,11 @@
 //
 
 #import "CollectionVC.h"
-#import "ZXCNoDataPlaceholder.h"
+#import "XCNoDataPlaceholder.h"
 
 #import "ViewController.h"
 
-@interface CollectionVC()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZXCNoDataPlaceholderProtocol>
+@interface CollectionVC()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,XCNoDataPlaceholderProtocol>
 
 @property (nonatomic , strong)UICollectionView * collectionView;
 
@@ -30,7 +30,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    zxcPlaceholderNetState = YES;
+    xcPlaceholderNetState = YES;
     
     _dataSource = [NSMutableArray new];
     

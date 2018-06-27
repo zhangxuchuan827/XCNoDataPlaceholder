@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZXCNoDataPlaceholderProtocol.h"
+#import "XCNoDataPlaceholderProtocol.h"
 
 @interface UICollectionView (NoDataPlaceHolder)
 
-@property (weak) id<ZXCNoDataPlaceholderProtocol> placeholderImageDelegate;
+@property (weak) id<XCNoDataPlaceholderProtocol> placeholderImageDelegate;
 
 /**
  刷新占位图

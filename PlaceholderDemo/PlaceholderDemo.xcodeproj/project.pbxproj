@@ -55,8 +55,8 @@
 		2786F6DF2028A06F00393643 /* CollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionVC.h; sourceTree = "<group>"; };
 		2786F6E02028A06F00393643 /* CollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionVC.m; sourceTree = "<group>"; };
 		F3C8B5CD20452B6C00D237F8 /* UITableView+NoDataPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NoDataPlaceholder.m"; sourceTree = "<group>"; };
-		F3C8B5CE20452B6C00D237F8 /* ZXCNoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholder.h; sourceTree = "<group>"; };
-		F3C8B5CF20452B6C00D237F8 /* ZXCNoDataPlaceholderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCNoDataPlaceholderProtocol.h; sourceTree = "<group>"; };
+		F3C8B5CE20452B6C00D237F8 /* XCNoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCNoDataPlaceholder.h; sourceTree = "<group>"; };
+		F3C8B5CF20452B6C00D237F8 /* XCNoDataPlaceholderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCNoDataPlaceholderProtocol.h; sourceTree = "<group>"; };
 		F3C8B5D020452B6C00D237F8 /* UICollectionView+NoDataPlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoDataPlaceHolder.h"; sourceTree = "<group>"; };
 		F3C8B5D120452B6C00D237F8 /* UICollectionView+NoDataPlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoDataPlaceHolder.m"; sourceTree = "<group>"; };
 		F3C8B5D220452B6C00D237F8 /* UITableView+NoDataPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NoDataPlaceholder.h"; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		2786F6A42028930700393643 /* PlaceholderDemo */ = {
 			isa = PBXGroup;
 			children = (
-				F32DD6E6202C37D0004BC26C /* ZXCNoDataPlaceholder */,
+				F32DD6E6202C37D0004BC26C /* XCNoDataPlaceholder */,
 				2786F6A52028930700393643 /* AppDelegate.h */,
 				2786F6A62028930700393643 /* AppDelegate.m */,
 				2786F6A82028930700393643 /* ViewController.h */,
@@ -143,18 +143,18 @@
 			path = PlaceholderDemoUITests;
 			sourceTree = "<group>";
 		};
-		F32DD6E6202C37D0004BC26C /* ZXCNoDataPlaceholder */ = {
+		F32DD6E6202C37D0004BC26C /* XCNoDataPlaceholder */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8B5CE20452B6C00D237F8 /* XCNoDataPlaceholder.h */,
+				F3C8B5CF20452B6C00D237F8 /* XCNoDataPlaceholderProtocol.h */,
 				F3C8B5D020452B6C00D237F8 /* UICollectionView+NoDataPlaceHolder.h */,
 				F3C8B5D120452B6C00D237F8 /* UICollectionView+NoDataPlaceHolder.m */,
 				F3C8B5D220452B6C00D237F8 /* UITableView+NoDataPlaceholder.h */,
 				F3C8B5CD20452B6C00D237F8 /* UITableView+NoDataPlaceholder.m */,
-				F3C8B5CE20452B6C00D237F8 /* ZXCNoDataPlaceholder.h */,
-				F3C8B5CF20452B6C00D237F8 /* ZXCNoDataPlaceholderProtocol.h */,
 			);
-			name = ZXCNoDataPlaceholder;
-			path = ../../ZXCNoDataPlaceholder;
+			name = XCNoDataPlaceholder;
+			path = ../../XCNoDataPlaceholder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

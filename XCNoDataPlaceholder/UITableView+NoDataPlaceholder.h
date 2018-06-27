@@ -1,5 +1,5 @@
 //
-//  UITableView+reload.h
+//  UITableView+NoDataPlaceholder.h
 //  StandardMVVM
 //
 //  Created by 张绪川 on 2018/2/2.
@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZXCNoDataPlaceholderProtocol.h"
+#import "XCNoDataPlaceholderProtocol.h"
 
 
 @interface UITableView (NoDataPlaceholder)
 
-@property (weak) id<ZXCNoDataPlaceholderProtocol> placeholderImageDelegate;
+@property (weak) id<XCNoDataPlaceholderProtocol> placeholderImageDelegate;
 
 /**
  刷新占位图
