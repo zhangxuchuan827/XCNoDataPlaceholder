@@ -4,15 +4,17 @@
 [![CocoaPods](https://img.shields.io/badge/pod-1.0.0-green.svg)]()
 [![Support](https://img.shields.io/badge/support-iOS7.0+-blue.svg?style=flat)](https://www.apple.com/nl/ios/)
 
-一个简单医用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
+一个超级简单易用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
 ![数据图片](./img.png)
 
 ## 使用说明
 
+
 0. CocoaPods
+
 ```
-pod 'ZXCNoDataPlaceHolder'
+pod 'XCNoDataPlaceholder'
 ```
 
 1.引用头文件ZXCNoDataPlaceholder.h
