@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint ZXCNoDataPlaceHolder.podspec' to ensure this is a
+#  Be sure to run `pod spec lint ZXCNoDataPlaceholder.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "ZXCNoDataPlaceHolder"
+  s.name         = "ZXCNoDataPlaceholder"
   s.version      = "1.0.5"
   s.summary      = "这是一个简单易用的空列表占位图插件，适用于UITableView和UICollectionView"
 
