@@ -29,10 +29,14 @@
     
     xcPlaceholderNetState = NO;
     
+    UIView * headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300)];
+    headerView.backgroundColor = [UIColor lightGrayColor];
+    
     _dataSource = [NSMutableArray new];
 
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     _tableView.dataSource = self;
+    _tableView.tableHeaderView = headerView;
     _tableView.placeholderImageDelegate = self;
     [_tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"cell"];
     [self.view addSubview:_tableView];
@@ -113,7 +117,7 @@
 }
 
 - (UIOffset)PlaceholderOffset{
-    return UIOffsetMake(0, -150);
+    return UIOffsetMake(0, 150);
 }
 
 -(void)dealloc{

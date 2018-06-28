@@ -6,18 +6,17 @@
 
 一个超级简单易用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
-![数据图片](./img.png)
+![图片](./img.png)
 
 ## 使用说明
 
 
-0. CocoaPods
 
 ```
 pod 'XCNoDataPlaceholder'
 ```
 
-1.引用头文件ZXCNoDataPlaceholder.h
+1.引用头文件
 
 2.遵循协议，实现对应的代理方法
 
@@ -47,7 +46,7 @@ pod 'XCNoDataPlaceholder'
 - (UIButton *)PlaceholderRefreshButton;
 
 ```
-注意：若要实现网络错误状态下显示相应占位图需给zxcBackgroundImageNetStateBlock赋值 return YES表示网络正常
+
 
 
 ## TableViewDemo（CollectionView使用方式相同）
@@ -77,7 +76,7 @@ _tableView.placeholderImageDelegate = self;
 
 ```
 
-## 网络错误占位图
+## 网络错误标识位
 
 需要在网络状态监听器中做状态修改
 
@@ -93,6 +92,9 @@ e.p.
 
 ```
 
+## 注意
+
+由于提示图是添加在BackgroundView上，所以不能随列表滑动
 
 
 ## Apache License 2.0
