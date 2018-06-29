@@ -43,7 +43,6 @@ pod 'XCNoDataPlaceholder'
 - (CGSize)PlaceholderImageSize;
 
 /**
- * 图片位置调整
  * image offset
  */
 - (UIOffset)PlaceholderOffset;
