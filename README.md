@@ -28,13 +28,11 @@ pod 'XCNoDataPlaceholder'
 
 ```
 /**
- * 无数据占位图 
  * Empty Data Placeholder Image
  */
 - (UIImage *)PlaceholderNoDataImage;
 
 /**
- * 网络错误的占位图
  * Net Error Placeholder Image
  */
 - (UIImage *)PlaceholderNetErrorImage;
@@ -101,10 +99,11 @@ e.p.
 
 ```
 
-## 注意
+## Attentions
 
 由于组件是添加在BackgroundView上，所以不能随列表滑动
-Because the component is added to the BackgroundView, it cannot slide with the list
+
+it cannot slide with the list, Because the  it's added to the BackgroundView
 
 
 ## Apache License 2.0
