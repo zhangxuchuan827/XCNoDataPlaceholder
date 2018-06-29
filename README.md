@@ -1,4 +1,4 @@
-# ZXCNoDataPlaceholder
+# XCNoDataPlaceholder
 
 [![License](https://img.shields.io/badge/License-%20Apache%20LICENSE%202.0-yellow.svg)]()
 [![CocoaPods](https://img.shields.io/badge/pod-1.0.0-green.svg)]()
@@ -6,7 +6,10 @@
 
 一个超级简单易用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
-![图片](./img.png)
+A super simple and easy-to-use empty data prompt for the UITableView and UICollectionView.
+Can distinguish between network error state and empty data state
+
+![img](./img.png)
 
 ## 使用说明
 
@@ -16,32 +19,39 @@
 pod 'XCNoDataPlaceholder'
 ```
 
-1.引用头文件
+1.import it
 
-2.遵循协议，实现对应的代理方法
+2.Implementing the Delegate method
 
 
 ## Protocol
 
 ```
 /**
- 无数据占位图
+ * 无数据占位图 
+ * Empty Data Placeholder Image
  */
 - (UIImage *)PlaceholderNoDataImage;
+
 /**
- 网络错误的占位图
+ * 网络错误的占位图
+ * Net Error Placeholder Image
  */
 - (UIImage *)PlaceholderNetErrorImage;
+
 /**
- 占位图尺寸。默认200*200
+ * default size : 200*200
  */
 - (CGSize)PlaceholderImageSize;
+
 /**
- 图片位置调整
+ * 图片位置调整
+ * image offset
  */
 - (UIOffset)PlaceholderOffset;
+
 /**
- 刷新按钮
+ * Refresh Button
  */
 - (UIButton *)PlaceholderRefreshButton;
 
@@ -49,14 +59,15 @@ pod 'XCNoDataPlaceholder'
 
 
 
-## TableViewDemo（CollectionView使用方式相同）
+## Demo Code
 
 ```
-<ZXCNoDataPlaceholderDelegate>
+<XCNoDataPlaceholderDelegate>
 
 //-----
 
 _tableView.placeholderImageDelegate = self;
+_collectionView.placeholderImageDelegate = self;
 
 //------
 
@@ -76,9 +87,7 @@ _tableView.placeholderImageDelegate = self;
 
 ```
 
-## 网络错误标识位
-
-需要在网络状态监听器中做状态修改
+## Net Error identifier
 
 ```
 e.p.
@@ -94,7 +103,8 @@ e.p.
 
 ## 注意
 
-由于提示图是添加在BackgroundView上，所以不能随列表滑动
+由于组件是添加在BackgroundView上，所以不能随列表滑动
+Because the component is added to the BackgroundView, it cannot slide with the list
 
 
 ## Apache License 2.0
