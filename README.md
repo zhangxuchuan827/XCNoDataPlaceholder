@@ -6,7 +6,7 @@
 
 一个超级简单易用的UITableView和UICollectionView的空数据占位图，可区分实现网络错误状态和空数据状态
 
-A super simple and easy-to-use empty data prompt for the UITableView and UICollectionView.
+A super easy-to-use empty data prompt for the UITableView and UICollectionView.
 Can distinguish between network error state and empty data state
 
 ![img](./img.png)
@@ -33,7 +33,8 @@ pod 'XCNoDataPlaceholder'
 - (UIImage *)PlaceholderNoDataImage;
 
 /**
- * Net Error Placeholder Image
+ * Net Error Placeholder Image 
+ * if you don't implement it , will used  - PlaceholderNoDataImage
  */
 - (UIImage *)PlaceholderNetErrorImage;
 
@@ -49,6 +50,7 @@ pod 'XCNoDataPlaceholder'
 
 /**
  * Refresh Button
+ * you can return any UIView instance if you need
  */
 - (UIButton *)PlaceholderRefreshButton;
 

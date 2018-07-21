@@ -88,7 +88,20 @@ BOOL xcPlaceholderNetState  = YES ;
     if (![self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)]  ) {
         return;
     }
-    if (![self.placeholderImageDelegate PlaceholderNetErrorImage] ) {
+    
+    UIImage * errNetImg ;
+    UIImage * nodataImg ;
+    if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNetErrorImage)]) {
+        errNetImg = [self.placeholderImageDelegate PlaceholderNetErrorImage];
+    }else if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderNoDataImage)]) {
+        nodataImg = [self.placeholderImageDelegate PlaceholderNoDataImage];
+    }else {
+        return;
+    }
+    
+    UIImage * result = errNetImg != nil ? errNetImg : nodataImg;
+    
+    if (result == nil){
         return;
     }
     
@@ -97,10 +110,10 @@ BOOL xcPlaceholderNetState  = YES ;
     if ([self.placeholderImageDelegate respondsToSelector:@selector(PlaceholderImageSize)]) {
         size  = [self.placeholderImageDelegate PlaceholderImageSize];
     }
-    
+   
     UIImageView * normalView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 ,size.width , size.height)];
     normalView.center = [self makeOffsetWithPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
-    normalView.image = [[self.placeholderImageDelegate PlaceholderNetErrorImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    normalView.image = [result imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [self.backgroundView addSubview:normalView];
     [self addRefureshButton];
