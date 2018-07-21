@@ -26,7 +26,11 @@ BOOL xcPlaceholderNetState  = YES ;
 
 -(void)zxc_reloadData{
     [self zxc_reloadData];
-    [self refreshPlaceholderView];
+    if (self.firstReload) {
+        [self refreshPlaceholderView];
+    }
+    self.firstReload = YES;
+    
 }
 
 
@@ -181,7 +185,13 @@ BOOL xcPlaceholderNetState  = YES ;
 }
 
 
+- (BOOL)firstReload {
+    return [objc_getAssociatedObject(self, @selector(firstReload)) boolValue];
+}
 
+- (void)setFirstReload:(BOOL)firstReload {
+    objc_setAssociatedObject(self, @selector(firstReload), @(firstReload), OBJC_ASSOCIATION_ASSIGN);
+}
 
 
 

@@ -12,10 +12,7 @@
 
 const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
-
-
 @implementation UICollectionView (NoDataPlaceHolder)
-
 
 + (void)load{
     Method old = class_getInstanceMethod(self, @selector(reloadData));
@@ -26,7 +23,11 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 
 - (void)zxc_reloadData{
     [self zxc_reloadData];
-    [self refreshPlaceholderView];
+    if (self.firstReload) {
+        [self refreshPlaceholderView];
+    }
+    self.firstReload = YES;
+    
 }
 
 - (void)refreshPlaceholderView{
@@ -41,13 +42,11 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
     
     //判断-有判断工具并且网络不正常
     if ( ![self hasSomeCells] && !xcPlaceholderNetState ) {
-        
         [self loadErrorBackgroundView];
         return;
     }
     
     if (![self hasSomeCells]) {
-        
         [self loadNormalBackgroundView];
     }
 }
@@ -152,7 +151,7 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 - (BOOL)hasSomeCells{
     if ([self.dataSource respondsToSelector:@selector(collectionView:numberOfItemsInSection:)]) {
         
-        if ([self.dataSource respondsToSelector:@selector(numberOfItemsInSection:)]) {
+        if ([self.dataSource respondsToSelector:@selector(numberOfSectionsInCollectionView:)]) {
             
             NSInteger sections = [self.dataSource numberOfSectionsInCollectionView:self];
             
@@ -199,7 +198,13 @@ const char * imageDelegateKey_cl = "imageDelegateKey_cl";
 -(void)setPlaceholderImageDelegate:(id<XCNoDataPlaceholderProtocol>)placeholderImageDelegate{
     objc_setAssociatedObject(self, imageDelegateKey_cl, placeholderImageDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
+- (BOOL)firstReload {
+    return [objc_getAssociatedObject(self, @selector(firstReload)) boolValue];
+}
 
+- (void)setFirstReload:(BOOL)firstReload {
+    objc_setAssociatedObject(self, @selector(firstReload), @(firstReload), OBJC_ASSOCIATION_ASSIGN);
+}
 
 
 @end

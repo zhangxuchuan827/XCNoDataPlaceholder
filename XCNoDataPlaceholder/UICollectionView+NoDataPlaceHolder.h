@@ -11,6 +11,7 @@
 
 @interface UICollectionView (NoDataPlaceHolder)
 
+@property (nonatomic, assign) BOOL firstReload;
 @property (weak) id<XCNoDataPlaceholderProtocol> placeholderImageDelegate;
 
 /**
@@ -18,6 +19,5 @@
  */
 - (void)refreshPlaceholderView;
 
-
-
 @end
+

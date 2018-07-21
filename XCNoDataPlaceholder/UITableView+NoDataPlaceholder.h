@@ -12,6 +12,7 @@
 
 @interface UITableView (NoDataPlaceholder)
 
+@property (nonatomic, assign) BOOL firstReload;
 @property (weak) id<XCNoDataPlaceholderProtocol> placeholderImageDelegate;
 
 /**
