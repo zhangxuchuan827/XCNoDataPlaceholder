@@ -58,7 +58,7 @@ pod 'XCNoDataPlaceholder'
 
 
 
-## Demo Code
+## Demo
 
 ```
 <XCNoDataPlaceholderDelegate>
@@ -104,7 +104,7 @@ e.p.
 
 由于组件是添加在BackgroundView上，所以不能随列表滑动
 
-it cannot slide with the list, Because the  it's added to the BackgroundView
+it cannot slide with the list, Because it's added to the BackgroundView
 
 
 ## Apache License 2.0
