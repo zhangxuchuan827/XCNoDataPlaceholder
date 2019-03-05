@@ -92,9 +92,9 @@ _collectionView.placeholderImageDelegate = self;
 e.p.
 [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
     if (status == AFNetworkReachabilityStatusNotReachable) {
-        zxcPlaceholderNetState = NO;
+        xcPlaceholderNetState = NO;
     }else{
-        zxcPlaceholderNetState = YES;
+        xcPlaceholderNetState = YES;
     }
 }];
 
