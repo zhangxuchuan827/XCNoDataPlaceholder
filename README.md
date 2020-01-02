@@ -15,10 +15,6 @@ Can distinguish between network error state and empty data state
 
 
 
-```
-pod 'XCNoDataPlaceholder'
-```
-
 1.import it
 
 2.Implementing the Delegate method
